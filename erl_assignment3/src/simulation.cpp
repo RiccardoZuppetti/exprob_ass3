@@ -1,3 +1,32 @@
+/** @package erl_assignment3
+* 
+* @file simulation.cpp
+* @brief Node to implement the simulation
+*
+* @author Riccardo Zuppetti
+* @version 1.0
+* @date 22/08/2022
+* @details 
+*
+*
+* Subscribes to: <BR>
+*    None
+* 
+* Publishes to: <BR>
+*    None
+* 
+* Client: <BR>
+*   None
+* 	
+* Services: <BR>
+*  /oracle_solution
+*  /oracle_hint
+*
+* Action Client:
+*  None
+*
+*/
+
 #include <ros/ros.h>
 #include <erl2/ErlOracle.h>
 #include <erl2/Oracle.h>
@@ -28,13 +57,27 @@ int winID = -1;
 int markerID[30]; 
 erl2::ErlOracle oracle_msgs[30];
  
-
+/**
+* @brief : oracle service
+* @param req : erl2::Oracle::Request
+* @param res : erl2::Oracle::Response
+* @return : true
+* 
+*/
 
 bool oracleService(erl2::Oracle::Request &req, erl2::Oracle::Response &res)
 	{
 		res.ID = winID;
 		return true;
 	}
+
+/**
+* @brief : oracle callback
+* @param req : erl_assignment3::Marker::Request
+* @param res : erl_assignment3::Marker::Response
+* @return : true
+* 
+*/
 
 bool oracleCallback(erl_assignment3::Marker::Request &req, erl_assignment3::Marker::Response &res)
 {
