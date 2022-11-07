@@ -55,7 +55,6 @@ import time
 def move_base(x, y):
 
     global client_move_base
-    client_move_base.wait_for_server()
     msg=MoveBaseGoal()
     msg.target_pose.header.frame_id="map"
     msg.target_pose.pose.position.x=x
@@ -237,6 +236,7 @@ def main():
     
     client_oracle_hint = rospy.ServiceProxy('oracle_hint', Marker)
     client_move_base = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
+    client_move_base.wait_for_server()
 
     rospy.Subscriber("/id_aruco", Int64, cbk_auco)
     
