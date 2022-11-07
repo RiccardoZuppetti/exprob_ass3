@@ -14,7 +14,6 @@ At first, the robot must reach the center of a specific room. As soon as this po
 
 ## ROS Nodes
 
-
 The nodes are:
 
 - [ArmorInterface.py](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/scripts/ArmorInterface.py), that is used to interface with ARMOR. The interaction can be different: load the ontology; check if the hypothesis is correct; check if there is a new consistent hypothesis; add a new hint to the ontology once it has been perceived. The referring ontology is `cluedo_ontology.owl`.
@@ -40,6 +39,12 @@ Instead, the services are:
 # How to Run
 
 ## Requirements
+
+In order to compile this project, the following ROS packages are needed:
+
+- [armor](https://github.com/EmaroLab/armor)
+- [planning](https://github.com/CarmineD8/planning)
+- [erl2](https://github.com/CarmineD8/erl2)
 
 ## How to compile the code
 
