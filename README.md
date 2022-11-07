@@ -1,18 +1,41 @@
 # Experimental Robotics Laboratory - Assignment 3
 
+The goal of this assignment is to develop a software architecture able to simulate an autonomous Cluedo game. In particular the robot has to explore an environment looking for aruco, that, once detected, correspond to specific IDs. To each ID is associated an hint used to reason about a possible solution of the game. On top, the robot should perceive hints until the consistent and correct hypothesis is found. For this purpose, a navigation algorithm to find aruco has been implemented assisted by cv_bridge and aruco libraries to collect IDs and so detect hints.
+
 ## Compatibility
+
+The project is developed using the provided docker container. In the event that it is not possible to test the project on this image, it is also possible to use ROS Noetic on Ubuntu 20.04.2, after installing the ARMOR components on this operating system. In any case, the project is compatible with ROS Noetic, and consequently may not work using a different ROS distribution.
 
 # Description of the package
 
 ## Robot behaviour and software architecture
 
+At first, the robot must reach the center of a specific room. As soon as this position is reached, the robot reachs 5 random targets within the same room and rotates around itself once one these targats is reached. Then, the robot moves towards the next room. This behaviour is repeated whenever all the rooms have been visited. When the robot moves, it continously look for aruco subcribing to the cameras' topic. When a new hint is perceived it interfaces with armor to reason about that hint. Detect hint behavior and navigation are concurrent.
+
 ## ROS Nodes
 
-## States diagram
+
+The nodes are:
+
+- [ArmorInterface.py](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/scripts/ArmorInterface.py), that is used to interface with ARMOR. The interaction can be different: load the ontology; check if the hypothesis is correct; check if there is a new consistent hypothesis; add a new hint to the ontology once it has been perceived. The referring ontology is `cluedo_ontology.owl`.
+- [AnnounceHypotesis.py](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/scripts/AnnounceHypotesis.py), called for announcing to the oracle the new consistent hypothesis found.
+- [FSM.py](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/scripts/FSM.py), that is the finite state machine used to synchronize the entire simulation. This node is responsible of the navigation of the robot. Moreover in order to perceive ID it subscribes to `/id_aruco` topic, once perceived it send the id as request to `/oracle_hint` service and retrieve as response the hint corresponding to that ID. On top, is a service client of `/armor_interface` service and call it when a new hint is perceived. If the hint is perceived correctly it call it to check if there is a new consistent hypothesis, and if true it call it again to check if it is also correct.
+- [aruco_reader.cpp](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/aruco_ros/aruco_ros/src/aruco_reader.cpp) it is a node of the `aruco_ros` package used to perceived and detect the aruco, and the correspondent IDs are published on the `/id_aruco` topic
+- [simulation.cpp](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/src/simulation.cpp), that implements the `oracle_hint` service, that takes as request an id and respond with an hint which can be correctly perceived or malformed. On top, the oracle responds if the hypothesis is correct or not.
+
+Instead, the services are:
+
+- [ArmorInterface.srv](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/srv/ArmorInterface.srv), which has as request the mode that the client wants in order to interact with ARMOR (0 to load ontology, 1 to check correct, 2 to check consistency, 3 to perceive an hint) and the ID of the hypothesis to be checked. The response is composed by the same mode and ID in addition to a success field, which is true if the action has been accomplished correctly.
+- [Announcement.srv](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/srv/Announcement.srv), which has as request an hypothesis (composed of [who, what, where]), while the response is a boolean to state that the action has been completed correctly.
+- [Marker.srv](https://github.com/RiccardoZuppetti/exprob_ass3/blob/main/erl_assignment3/srv/Marker.srv), which has as request the ID retrieved, while the response is the hint associated to the aforementioned ID.
 
 ## UML diagram
 
+![uml](https://user-images.githubusercontent.com/89387809/200359412-4e9cc053-cda1-4bdb-aab2-28b9743fcc36.jpg)
+
 ## Rqt-graph
+
+<img width="1743" alt="final_rqt" src="https://user-images.githubusercontent.com/89387809/200359730-c1b0e198-43b2-4468-be26-0b570767c575.png">
 
 # How to Run
 
