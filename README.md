@@ -102,7 +102,17 @@ Finally, in the last shell digit:
 roslaunch erl_assignment3 game_launcher.launch 2>/dev/null
 ```
 
-## Description of the execution
+In the following there are videos that shos how to launch the project and the behaviour of the robot that explores the environment.
+
+https://user-images.githubusercontent.com/89387809/200366097-3788dfc6-699d-44ce-8493-7f52a5a432d5.mp4
+
+https://user-images.githubusercontent.com/89387809/200366573-68a95b15-2c9d-45eb-963f-ba7047e9b8d9.mp4
+
+https://user-images.githubusercontent.com/89387809/200366636-87d0fc16-a714-4d0f-b7da-7c60b0af5f4b.mp4
+
+There is also a screenshot that shows the exploration of the environment.
+
+<img width="1132" alt="screen" src="https://user-images.githubusercontent.com/89387809/200367065-99c1d975-675a-4332-bb1c-9396f24eef39.png">
 
 # Working hypothesis and environment
 
