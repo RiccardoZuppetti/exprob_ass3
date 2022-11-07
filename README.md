@@ -128,6 +128,14 @@ The ontology is the core of the whole game. It allows to reason about hypotesis.
 
 ## System's limitations
 
+The first limitation is for sure the model of the robot.
+
+There is a limitation in the navigation algorithm, because when the robot is in proximity of a goal it blocks for few seconds.
+
+On top, sometimes the robot perceive an id not correctly.
+
+The bigger and most evident problem is the slowness of the robot during the navigation.
+
 ## System's technical improvements
 
 # Author and contacts
