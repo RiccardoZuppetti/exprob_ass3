@@ -48,6 +48,60 @@ In order to compile this project, the following ROS packages are needed:
 
 ## How to compile the code
 
+Move to your `catkin_ws/src/armor/armor` folder and digit (only the first time):
+
+```
+./gradlew deployApp
+```
+
+Then, move to your `catkin_ws/src` folder and clone this repository:
+
+```
+git clone https://github.com/RiccardoZuppetti/exprob_ass3.git experimental_assignment3
+```
+
+and build the workspace with the following command:
+
+```
+catkin_make
+```
+
+Copy the content of the `models` folder in the `/root/.gazebo/models` path.
+
+## Description of the execution
+
+To launch the project it is needed to open four shells.
+
+In the first shell, digit:
+
+```
+roscore &
+```
+
+and then
+
+```
+rosrun armor execute it.emarolab.armor.ARMORMainService
+```
+
+In the second one digit:
+
+```
+roslaunch erl_assignment3 init_launcher.launch 2>/dev/null
+```
+
+In the third terminal digit the following command:
+
+```
+roslaunch erl_assignment3 gazebo_launcher.launch 2>/dev/null
+```
+
+Finally, in the last shell digit:
+
+```
+roslaunch erl_assignment3 game_launcher.launch 2>/dev/null
+```
+
 ## Description of the execution
 
 # Working hypothesis and environment
