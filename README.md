@@ -8,6 +8,8 @@
 
 ## ROS Nodes
 
+## States diagram
+
 ## UML diagram
 
 ## Rqt-graph
