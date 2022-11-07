@@ -140,6 +140,12 @@ The bigger and most evident problem is the slowness of the robot during the navi
 
 ## System's technical improvements
 
+A possible improvement is to use ROSPlan instead of the implemented finite state machine.
+
+Another improvement to the system is to divide the system in two different behaviors, in the first one the robot should explore randomly the environment in order to find the aruco. Once the aruco are find the (x,y) coordinates in which the robot are associated to the id of the hint. Once that all hints are found the second behaviors start and the robot goes directly on the specific position to perceive again the hints.
+
+Another improvement is to use an already modeled robot.
+
 # Author and contacts
 
 Author: Riccardo Zuppetti
