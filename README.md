@@ -132,7 +132,9 @@ The first limitation is for sure the model of the robot.
 
 There is a limitation in the navigation algorithm, because when the robot is in proximity of a goal it blocks for few seconds.
 
-On top, sometimes the robot perceive an id not correctly.
+Sometimes a random target is generated out of the room.
+
+On top, it is possibile that the robot does not perceive correctly an ID.
 
 The bigger and most evident problem is the slowness of the robot during the navigation.
 
