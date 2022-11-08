@@ -128,23 +128,21 @@ The ontology is the core of the whole game. It allows to reason about hypotesis.
 
 ## System's limitations
 
-The first limitation is for sure the model of the robot.
+Concerning the system's limitations, it is possible to notice the following ones:
 
-There is a limitation in the navigation algorithm, because when the robot is in proximity of a goal it blocks for few seconds.
-
-Sometimes a random target is generated out of the room.
-
-On top, it is possibile that the robot does not perceive correctly an ID.
-
-The bigger and most evident problem is the slowness of the robot during the navigation.
+- the model of the robot
+- the navigation algorithm, since when the robot is in proximity of a goal it blocks for few seconds
+- a random target could be generated out of the referring room
+- the robot could not perceive correctly an ID.
+- slowness of the robot during the navigation.
 
 ## System's technical improvements
 
-A possible improvement is to use ROSPlan instead of the implemented finite state machine.
+Can be labeled as improvement to what has been done:
 
-Another improvement to the system is to divide the system in two different behaviors, in the first one the robot should explore randomly the environment in order to find the aruco. Once the aruco are find the (x,y) coordinates in which the robot are associated to the id of the hint. Once that all hints are found the second behaviors start and the robot goes directly on the specific position to perceive again the hints.
-
-Another improvement is to use an already modeled robot.
+- usage of ROSPlan instead of the implemented finite state machine
+- use an already modeled robot
+- divide the system in two different behaviours: in the first one the robot should explore randomly the environment in order to find the aruco; once the aruco are found, the (x,y) coordinates in which the robot is located are associated to the ID of the hint; as soon as all hints are found, the second behaviour start and the robot goes directly on the specific position to perceive again the hints.
 
 # Author and contacts
 
